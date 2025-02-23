@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Community Time Capsules</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+        {% if 'user_id' in session %}
+            <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="/capsules"><i class="fas fa-book"></i> My Capsules</a>
+            <a href="/community"><i class="fas fa-users"></i> Community</a>
+            <a href="/settings"><i class="fas fa-cog"></i> Settings</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        <h1>Community Memories</h1>
+        <div class="timeline">
+            {% for capsule in capsules %}
+                <div class="post sentiment-{{ capsule[5]|lower }} {% if capsule[4] > current_date %}locked{% endif %}">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <div class="profile-pic"></div>
+                        <p style="margin: 0;"><strong>{{ capsule[17] }}</strong> • {{ capsule[11] }}</p>
+                    </div>
+                    <p><strong>Category:</strong> {{ capsule[6] }}</p>
+                    <p><strong>Mood:</strong> {{ capsule[12] }}</p>
+                    <p><strong>Text:</strong> 
+                        {% if capsule[4] <= current_date %}
+                            {{ capsule[1] or "No text" }}
+                        {% else %}
+                            {{ (capsule[1] or "Locked content")[:50] + "..." if capsule[1] else "Locked" }}
+                        {% endif %}
+                    </p>
+                    {% if capsule[2] and capsule[4] <= current_date %}
+                        <p><img src="{{ url_for('uploaded_file', filename=capsule[2]|basename) }}" alt="Capsule Image"></p>
+                    {% elif capsule[2] %}
+                        <p><img src="{{ url_for('uploaded_file', filename=capsule[2]|basename) }}" alt="Locked Image"></p>
+                    {% endif %}
+                    {% if capsule[3] and capsule[4] <= current_date %}
+                        <audio controls>
+                            <source src="{{ url_for('uploaded_file', filename=capsule[3]|basename) }}" type="audio/mpeg">
+                        </audio>
+                    {% endif %}
+                    <p><strong>Sentiment:</strong> {{ capsule[5] }}</p>
+                    <p><strong>Tags:</strong> {{ capsule[14] or "None" }}</p>
+                    <p><strong>Unlock Date:</strong> {{ capsule[4] }} 
+                        {% if capsule[4] > current_date %}
+                            <span class="countdown" data-date="{{ capsule[4] }}"></span>
+                        {% endif %}
+                    </p>
+                    {% if capsule[8] %}
+                        <p><strong>Expires:</strong> {{ capsule[8] }}</p>
+                    {% endif %}
+                    <div class="post-actions">
+                        <form method="POST" action="{{ url_for('view_capsule', capsule_id=capsule[0]) }}">
+                            <button type="submit" name="action" value="like" class="action-btn"><i class="fas fa-thumbs-up"></i> Like ({{ capsule[15] }})</button>
+                        </form>
+                        <form method="POST" action="{{ url_for('view_capsule', capsule_id=capsule[0]) }}">
+                            <input type="text" name="comment" placeholder="Add a comment..." required style="width: 200px; margin-right: 10px;">
+                            <button type="submit" name="action" value="comment" class="action-btn"><i class="fas fa-comment"></i> Comment</button>
+                        </form>
+                        <form method="POST" action="{{ url_for('view_capsule', capsule_id=capsule[0]) }}">
+                            <input type="text" name="contribute_text" placeholder="Contribute text..." required style="width: 200px; margin-right: 10px;">
+                            <button type="submit" name="action" value="contribute" class="action-btn"><i class="fas fa-pen"></i> Contribute</button>
+                        </form>
+                    </div>
+                    {% if capsule[16] %}
+                        <p><strong>Comments:</strong> {{ capsule[16] }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

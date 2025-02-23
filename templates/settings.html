@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+        {% if 'user_id' in session %}
+            <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="/capsules"><i class="fas fa-book"></i> My Capsules</a>
+            <a href="/community"><i class="fas fa-users"></i> Community</a>
+            <a href="/settings"><i class="fas fa-cog"></i> Settings</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        <h1>Account Settings</h1>
+        <div class="settings-form">
+            <form method="POST" class="form-group">
+                <label for="current_email">Current Email</label>
+                <input type="email" name="current_email" id="current_email" value="{{ email }}" readonly>
+                <label for="current_password">Current Password</label>
+                <input type="password" name="current_password" id="current_password" placeholder="Current Password" required>
+                <label for="new_email">New Email (optional)</label>
+                <input type="email" name="new_email" id="new_email" placeholder="New Email (optional)">
+                <button type="submit" name="action" value="update_email"><i class="fas fa-envelope"></i> Update Email</button>
+            </form>
+            <form method="POST" class="form-group">
+                <label for="current_password2">Current Password</label>
+                <input type="password" name="current_password" id="current_password2" placeholder="Current Password" required>
+                <label for="new_password">New Password</label>
+                <input type="password" name="new_password" id="new_password" placeholder="New Password" required>
+                <button type="submit" name="action" value="update_password"><i class="fas fa-lock"></i> Update Password</button>
+            </form>
+            <form method="POST" class="form-group" onsubmit="return confirm('Are you sure you want to delete your account and all capsules? This action cannot be undone.');">
+                <label for="current_password3">Current Password</label>
+                <input type="password" name="current_password" id="current_password3" placeholder="Current Password" required>
+                <input type="hidden" name="confirm" value="yes">
+                <button type="submit" name="action" value="delete_account" class="delete-btn"><i class="fas fa-trash"></i> Delete Account</button>
+            </form>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        {% if 'capsule' not in message.lower() %}  <!-- Filter out capsule-related messages -->
+                            <p class="notification">{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>

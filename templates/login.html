@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+    </nav>
+    <div class="container">
+        <h1>Login</h1>
+        <div class="login-form">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+            </form>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        {% if 'capsule' not in message.lower() and 'logged out' not in message.lower() and 'signed up' not in message.lower() %}
+                            <p class="notification">{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <p style="text-align: center; margin-top: 20px;">
+                <a href="/signup" class="action-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

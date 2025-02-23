@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Time Capsule</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+        {% if 'user_id' in session %}
+            <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="/capsules"><i class="fas fa-book"></i> My Capsules</a>
+            <a href="/community"><i class="fas fa-users"></i> Community</a>
+            <a href="/settings"><i class="fas fa-cog"></i> Settings</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        <h1>Create Your Time Capsule</h1>
+        <form method="POST" action="/add" enctype="multipart/form-data" class="post">
+            <div class="form-group">
+                <label for="title">Capsule Title</label>
+                <input type="text" name="title" id="title" placeholder="Capsule Title (e.g., Family Memory)" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Description</label>
+                <textarea name="text" id="text" placeholder="Describe your memory or story..." rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">Upload a Photo</label>
+                <input type="file" name="image" id="image" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="audio">Record Your Story</label>
+                <input type="file" name="audio" id="audio" accept="audio/*">
+            </div>
+            <div class="form-group">
+                <label for="unlock_date">Unlock Date</label>
+                <input type="date" name="unlock_date" id="unlock_date" required>
+            </div>
+            <div class="form-group">
+                <label for="expire_date">Expiration Date</label>
+                <input type="date" name="expire_date" id="expire_date">
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select name="category" id="category">
+                    <option value="Personal">Personal</option>
+                    <option value="Family">Family</option>
+                    <option value="Cultural">Cultural Heritage</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mood">Mood</label>
+                <select name="mood" id="mood">
+                    <option value="Happy">Happy</option>
+                    <option value="Sad">Sad</option>
+                    <option value="Excited">Excited</option>
+                    <option value="Neutral">Neutral</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="visibility">Visibility</label>
+                <select name="visibility" id="visibility">
+                    <option value="Private">Private</option>
+                    <option value="Public">Public</option>
+                    <option value="Friends">Friends</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Password (optional for privacy)">
+            </div>
+            <button type="submit">Lock Capsule</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,440 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'); /* Font Awesome */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #685d87;
+    color: #FFFFFF;
+    overflow-x: hidden;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #2D1E5C;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.navbar a, .navbar .action-btn {
+    color: #8c5daa;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 15px;
+    font-size: 1em;
+    transition: color 0.2s ease;
+}
+
+.navbar a:hover, .navbar .action-btn:hover {
+    color: #FF6F61;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 70px auto 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 90px); /* Account for navbar and padding */
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form, .post, .dashboard, .login-form, .signup-form, .settings-form {
+    background: #3D2E6C;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+    transition: transform 0.2s ease;
+}
+
+form:hover, .post:hover, .dashboard:hover, .login-form:hover, .signup-form:hover, .settings-form:hover {
+    transform: translateY(-2px);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+textarea, input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 5px 0;
+    border: 1px solid #3d315a;
+    border-radius: 5px;
+    background: #F0F0F0;
+    color: #2D1E5C;
+    font-family: 'Poppins', sans-serif;
+    height: 40px; /* Uniform height for inputs */
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 120px; /* Adjusted height for textarea to match other inputs visually */
+    resize: vertical;
+}
+
+textarea:focus, input:focus, select:focus {
+    border-color: #6f5380;
+    outline: none;
+    box-shadow: none; /* Remove glow effect */
+}
+
+button {
+    background: #95889d;
+    color: #FFFFFF;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #8A00D0;
+    transform: translateY(-2px);
+}
+
+.post {
+    background: #3D2E6C;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 15px 0;
+    transition: transform 0.2s ease;
+}
+
+.post.locked {
+    opacity: 0.7;
+    filter: blur(2px);
+}
+
+.post.locked img {
+    filter: blur(5px);
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #A020F0;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sentiment-very-positive { border-left: 4px solid #00FF64; }
+.sentiment-positive { border-left: 4px solid #00C864; }
+.sentiment-negative { border-left: 4px solid #FF6464; }
+.sentiment-very-negative { border-left: 4px solid #FF4040; }
+.sentiment-neutral { border-left: 4px solid #999; }
+
+img {
+    max-width: 250px;
+    border-radius: 5px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
+}
+
+audio {
+    margin-top: 15px;
+    width: 100%;
+    background: #F0F0F0;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.badges, .streak, .notifications, .leaderboard {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.badge {
+    display: inline-block;
+    background: #FF6F61;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 5px;
+    font-weight: 600;
+    box-shadow: 0 3px 7px rgba(255, 111, 97, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+}
+
+.leaderboard-item {
+    background: #3D2E6C;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 5px 0;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.leaderboard-item:hover {
+    transform: translateY(-2px);
+}
+
+a, .action-btn {
+    color: #A020F0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+a:hover, .action-btn:hover {
+    color: #FF6F61;
+    transform: translateY(-2px);
+}
+
+.countdown {
+    font-size: 1em;
+    color: #A020F0;
+    font-weight: 600;
+}
+
+.notification {
+    background: #3D2E6C;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.notification:hover {
+    transform: translateY(-2px);
+}
+
+.dashboard, .login-form, .signup-form, .settings-form {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.dashboard p, .login-form p, .signup-form p, .settings-form p {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+.action-icons {
+    margin-top: 15px;
+}
+
+.action-btn i {
+    margin-right: 5px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.post-actions form {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+}
+
+.comment-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.comment-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+    border: 1px solid #5D4B8A;
+    border-radius: 5px;
+    background: #F0F0F0;
+    color: #2D1E5C;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.comment-input:focus {
+    border-color: #A020F0;
+    outline: none;
+    box-shadow: none;
+}
+
+.delete-btn {
+    background: #FF6F61;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+    background: #D32F2F;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 800px;
+        margin: 70px 10px 20px;
+        padding: 15px;
+    }
+
+    .navbar a, .navbar .action-btn {
+        margin: 0 10px;
+        font-size: 0.9em;
+    }
+
+    form, .post, .dashboard, .login-form, .signup-form, .settings-form {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 60px 5px 15px;
+        padding: 10px;
+    }
+
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .navbar a, .navbar .action-btn {
+        margin: 0 8px;
+        font-size: 0.8em;
+    }
+
+    form, .post, .dashboard, .login-form, .signup-form, .settings-form {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    textarea, input, select {
+        padding: 10px;
+    }
+
+    button, .action-btn, .delete-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .post-actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .post-actions form {
+        width: 100%;
+    }
+
+    .post-actions input {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
+    .comment-form {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .comment-input {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 50px 5px 10px;
+        padding: 5px;
+    }
+
+    .navbar {
+        padding: 5px 10px;
+    }
+
+    .navbar a, .navbar .action-btn {
+        margin: 0 5px;
+        font-size: 0.7em;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    form, .post, .dashboard, .login-form, .signup-form, .settings-form {
+        padding: 10px;
+    }
+
+    textarea, input, select {
+        padding: 8px;
+    }
+
+    button, .action-btn, .delete-btn {
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+
+    .profile-pic {
+        width: 30px;
+        height: 30px;
+    }
+
+    img {
+        max-width: 200px;
+    }
+}

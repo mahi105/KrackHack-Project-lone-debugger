@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/signup"><i class="fas fa-user-plus"></i> Sign Up</a>
+        {% if 'user_id' in session %}
+            <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="/capsules"><i class="fas fa-book"></i> My Capsules</a>
+            <a href="/community"><i class="fas fa-users"></i> Community</a>
+            <a href="/settings"><i class="fas fa-cog"></i> Settings</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        <h1>Welcome, {{ username }}!</h1>
+        <div class="dashboard">
+            <p><strong><i class="fas fa-box-open"></i> Capsules Created:</strong> {{ capsule_count }}</p>
+            <p><strong><i class="fas fa-unlock"></i> Capsules Unlocked:</strong> {{ unlocked_count }}</p>
+            <p><strong><i class="fas fa-star"></i> Points:</strong> {{ points }}</p>
+        </div>
+    </div>
+</body>
+</html>
