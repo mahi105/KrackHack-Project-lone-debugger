@@ -13,10 +13,29 @@ Imagine a digital time capsule that preserves your most cherished memories—let
 
 Whether you’re preserving a family story, a personal milestone, or a cultural heritage, Time Vault makes it simple, secure, and fun!
 
+## 🎨 Features
+User Authentication: Secure login/signup with email, password, and username.
+Capsule Creation: Add titles, descriptions, photos, audio, unlock/expiration dates, categories (e.g., Personal, Family, Cultural), moods, and visibility settings.
+Capsule Management: View locked/unlocked capsules, add notes, like, comment, or delete (for private capsules).
+Community Interaction: Browse public capsules, engage with likes and comments, and contribute to shared memories.
+Gamification: Earn points for creating capsules, liking, commenting, and contributing; unlock badges and track daily streaks.
+
+
 ## 🛠 Setup Instructions
-Ready to explore Time Vault locally? Follow these steps to set up and run the project:
+Ready to explore Time Capsule locally? Follow these steps to set up and run the project:
 
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/mahi105/KrackHack-Project-lone-debugger.git
    cd KrackHack-Project-lone-debugger
+
+## 🚀 Installation  
+
+### Install Required Packages  
+```bash
+pip install flask sqlite3 textblob
+
+Set Up the Database
+Run the application (python app.py), which will automatically initialize the SQLite database (capsules.db).
+
+Open your browser and navigate to http://127.0.0.1:5000 to use Time Capsule.
